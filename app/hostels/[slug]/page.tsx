@@ -4,15 +4,18 @@ import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 import { hostels } from "@/data/hostels";
 import RequestRoomButton from "./requestionRoomButton";
+import Link from "next/link";
 
 interface HostelPageProps {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
 export default async function HostelPage({ params }: HostelPageProps) {
-	const hostel = hostels.find((h) => h.id === params.slug);
+	const { slug } = await params;
+
+	const hostel = hostels.find((h) => h.id === slug);
 
 	if (!hostel) {
 		notFound();
@@ -24,9 +27,11 @@ export default async function HostelPage({ params }: HostelPageProps) {
 			<main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				<div className="max-w-6xl mx-auto">
 					<nav className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
-						<a href="/hostels" className="hover:text-primary transition-colors">
+						<Link
+							href="/hostels"
+							className="hover:text-primary transition-colors">
 							Hostels
-						</a>
+						</Link>
 						<span className="mx-2">›</span>
 						<span className="text-gray-900 dark:text-white">{hostel.name}</span>
 					</nav>
