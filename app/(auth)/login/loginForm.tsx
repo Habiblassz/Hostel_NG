@@ -96,7 +96,7 @@ export default function LoginForm() {
 
 			<div className="text-center">
 				<span className="text-sm text-gray-600 dark:text-gray-400">
-					Don't have an account?{" "}
+					Don&apos;t have an account?{" "}
 					<Link
 						href="/register"
 						target="_self"
