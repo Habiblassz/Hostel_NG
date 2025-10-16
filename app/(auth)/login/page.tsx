@@ -9,7 +9,7 @@ export default async function LoginPage() {
 		const userRole = session.user?.role as string;
 
 		if (userRole === "admin") {
-			return redirect("/admin/posts");
+			return redirect("/admin/dashboard");
 		} else {
 			return redirect("/student/dashboard");
 		}
