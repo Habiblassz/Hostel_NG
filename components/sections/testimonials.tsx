@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Testimonials() {
 	const testimonials = [
 		{
@@ -35,17 +37,19 @@ export default function Testimonials() {
 						<div
 							key={index}
 							className="card flex flex-col sm:flex-row gap-4 sm:gap-6 hover:shadow-lg transition-shadow duration-300">
-							<img
+							<Image
 								alt={testimonial.name}
 								className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover flex-shrink-0 mx-auto sm:mx-0"
 								src={testimonial.image}
+								width={100}
+								height={100}
 							/>
 							<div className="flex-1 text-center sm:text-left">
 								<p className="text-sm font-medium text-primary mb-1">
 									{testimonial.name}
 								</p>
 								<p className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-									"{testimonial.role}"
+									&quot;{testimonial.role}&quot;
 								</p>
 								<p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
 									{testimonial.content}
