@@ -1,26 +1,203 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* @layer theme, base, components, utilities; */
+
+@theme {
+	--color-primary: #0f66bd;
+	--color-primary-dark: #0a4d8c;
+	--color-background-light: #f6f7f8;
+	--color-background-dark: #101922;
+	--color-surface-light: #ffffff;
+	--color-surface-dark: #1a202c;
+
+	--font-display: "Inter", system-ui, sans-serif;
+
+	--radius: 0.5rem;
+	--radius-lg: 1rem;
+	--radius-xl: 1.5rem;
+
+	--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+		0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer base {
+	html {
+		font-family: var(--font-display);
+		-webkit-text-size-adjust: 100%;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	body {
+		@apply bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 transition-colors duration-200;
+		text-rendering: optimizeLegibility;
+	}
+
+	/* Improved focus styles */
+	:focus-visible {
+		@apply outline-2 outline-offset-2 outline-primary;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer components {
+	/* Enhanced Button Components */
+	.btn {
+		@apply inline-flex items-center justify-center text-sm font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed;
+	}
+
+	.btn-primary {
+		@apply w-full sm:w-auto px-4 py-3 sm:px-6 sm:py-3 text-white bg-primary shadow-sm hover:bg-primary-dark active:scale-95 min-h-[44px];
+	}
+
+	.btn-secondary {
+		@apply w-full sm:w-auto px-4 py-3 sm:px-6 sm:py-3 bg-surface-light text-gray-800 dark:bg-surface-dark dark:text-gray-200 border border-gray-300 dark:border-gray-600 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 min-h-[44px];
+	}
+
+	.btn-social {
+		@apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 active:scale-95 min-h-[44px];
+	}
+
+	/* Enhanced Card Component */
+	.card {
+		@apply bg-surface-light dark:bg-surface-dark rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8 transition-all duration-200;
+	}
+
+	/* Enhanced Form Components */
+	.form-input {
+		@apply block w-full px-4 py-3 text-base bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 min-h-[44px];
+	}
+
+	.form-checkbox {
+		@apply w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary focus:ring-2;
+	}
+
+	/* Layout Components */
+	.container-responsive {
+		@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
+	}
+
+	.section-padding {
+		@apply py-8 sm:py-12 lg:py-16;
+	}
+
+	/* Auth Layout Specific */
+	.auth-container {
+		@apply min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900 py-4 sm:py-8 lg:py-12 px-3 sm:px-4 lg:px-8;
+	}
+
+	.auth-card {
+		@apply max-w-md w-full mx-auto shadow-xl;
+	}
+
+	/* Divider Component */
+	.divider {
+		@apply relative my-6 sm:my-8;
+	}
+
+	.divider-line {
+		@apply absolute inset-0 flex items-center;
+	}
+
+	.divider-content {
+		@apply relative flex justify-center text-sm;
+	}
+
+	.divider-text {
+		@apply px-3 bg-surface-light dark:bg-surface-dark text-gray-500 text-sm;
+	}
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	.safe-area-inset-bottom {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+
+	.safe-area-inset-top {
+		padding-top: env(safe-area-inset-top);
+	}
+
+	/* Improved scrolling */
+	.scroll-smooth {
+		scroll-behavior: smooth;
+	}
+
+	/* Hide scrollbar for clean look */
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* Enhanced Image Handling */
+img {
+	@apply max-w-full h-auto transition-opacity duration-300;
+}
+
+img[data-loaded="false"] {
+	opacity: 0;
+}
+
+img[data-loaded="true"] {
+	opacity: 1;
+}
+
+/* Improved Mobile Experience */
+@media (max-width: 640px) {
+	/* Better touch targets */
+	button,
+	a,
+	[role="button"],
+	.btn,
+	.form-input,
+	.form-checkbox {
+		min-height: 44px;
+		min-width: 44px;
+	}
+
+	/* Prevent zoom on iOS without breaking accessibility */
+	input.form-input,
+	select.form-input,
+	textarea.form-input {
+		font-size: 16px;
+		line-height: 1.5;
+	}
+
+	/* Improved scrolling on mobile */
+	body {
+		-webkit-overflow-scrolling: touch;
+		overflow-x: hidden;
+	}
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+	.btn-primary {
+		@apply border-2 border-current;
+	}
+
+	.card {
+		@apply border-2;
+	}
 }
