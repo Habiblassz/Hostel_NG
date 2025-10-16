@@ -16,7 +16,7 @@ export default function Contact() {
 		e.preventDefault();
 		// Handle form submission
 		console.log("Contact form submitted:", formData);
-		alert("Thank you for your message! We'll get back to you soon.");
+		alert("Thank you for your message! We will get back to you soon.");
 		setFormData({ name: "", email: "", subject: "", message: "" });
 	};
 
@@ -42,8 +42,8 @@ export default function Contact() {
 							Get In Touch
 						</h1>
 						<p className="text-lg sm:text-xl text-primary-100 max-w-2xl mx-auto">
-							Have questions about our hostels? We're here to help you find your
-							perfect student accommodation.
+							Have questions about our hostels? We&apos;re here to help you find
+							your perfect student accommodation.
 						</p>
 					</div>
 				</section>

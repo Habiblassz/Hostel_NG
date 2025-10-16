@@ -81,7 +81,8 @@ export default function About() {
 									inspiring living environment for students. Our modern
 									facilities and dedicated staff ensure a supportive community
 									where students can thrive both academically and socially.
-									We're more than just a place to stay; we're a place to grow.
+									We&apos;re more than just a place to stay; we&apos;re a place
+									to grow.
 								</p>
 								<p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
 									Located in the heart of the city, we offer easy access to

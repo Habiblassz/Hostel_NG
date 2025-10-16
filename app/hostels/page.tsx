@@ -290,7 +290,7 @@ export default function Hostels() {
 									No hostels found
 								</h3>
 								<p className="text-gray-600 dark:text-gray-400 mb-4 max-w-md mx-auto">
-									We couldn't find any hostels matching your criteria. Try
+									We couldn&apos;t find any hostels matching your criteria. Try
 									adjusting your search or filters.
 								</p>
 								<button onClick={clearFilters} className="btn-primary">
