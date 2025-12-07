@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
 	// Define protected routes and their required roles
 	const protectedRoutes = {
 		"/admin": ["admin"],
-		"/student": ["student", "admin"], // admin can access student routes if needed
+		"/student": ["student"],
 	};
 
 	// Check if the current path is protected
@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
 		// If user is not authenticated, redirect to login
 		if (!token) {
 			const loginUrl = new URL("/login", request.url);
-			loginUrl.searchParams.set("callbackUrl", encodeURI(request.url));
+			// loginUrl.searchParams.set("callbackUrl", encodeURI(request.url));
 			return NextResponse.redirect(loginUrl);
 		}
 
@@ -37,7 +37,7 @@ export async function middleware(request: NextRequest) {
 			)?.[1] || [];
 
 		if (!requiredRoles.includes(userRole)) {
-			// User doesn't have required role - redirect to unauthorized or their dashboard
+			// User doesn't have required role - redirect to their appropriate dashboard
 			const redirectUrl =
 				userRole === "admin" ? "/admin/dashboard" : "/student/dashboard";
 			return NextResponse.redirect(new URL(redirectUrl, request.url));
@@ -48,9 +48,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: [
-		"/admin/:path*",
-		"/student/:path*",
-		// Add other protected routes here
-	],
+	matcher: ["/admin/:path*", "/student/:path*"],
 };

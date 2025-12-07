@@ -12,6 +12,7 @@ const recentRequests: RoomRequest[] = [
 		id: "1",
 		student: {
 			id: "1",
+			userId: "1",
 			name: "Sophia Clark",
 			studentId: "2021001",
 			email: "sophiaclark@gmail.com",
@@ -25,6 +26,7 @@ const recentRequests: RoomRequest[] = [
 		id: "2",
 		student: {
 			id: "2",
+			userId: "2",
 			name: "Ethan Miller",
 			studentId: "2021002",
 			email: "ethanmiller@gmail.com",
@@ -81,7 +83,7 @@ export default function AdminDashboard() {
 								<div className="flex items-center justify-between">
 									<div>
 										<p className="font-medium text-zinc-900 dark:text-white">
-											{request.student.name}
+											{request.student?.name}
 										</p>
 										<p className="text-sm text-zinc-500 dark:text-zinc-400">
 											{request.hostel} • {request.roomType}
